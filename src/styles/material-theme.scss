@@ -1,0 +1,133 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+
+$mat-thothcompany: (
+  50: #4dc3ff,
+  100: #33bbff,
+  200: #1ab2ff,
+  300: #00aaff,
+  400: #0099e6,
+  500: #08c!important,
+  600: #0077b3,
+  700: #006699,
+  800: #005580,
+  900: #004466,
+  A100: #66ccff!important,
+  A200: #80d4ff!important,
+  A400: #99ddff,
+  A700: #99ddff,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$primary: mat-palette($mat-thothcompany, 500, A100, A400);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+.mat-app-background{
+    height: 100%;
+}
+
+.mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+@include angular-material-theme($theme);
+
+
+.mat-app-background{
+  height: auto!important;
+}
+
+
+// Our dark theme
+.dark-theme {
+  color: $light-primary-text;
+  $dark-primary: mat-palette($mat-yellow);
+  $dark-accent: mat-palette($mat-amber, A400, A100, A700);
+  $dark-warn: mat-palette($mat-red);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+    .venda-box-produto-info-data-item-content-label{
+      color: #9a9a9a!important;
+    }
+    .card-tag span{
+      color: #9a9a9a !important;
+    }
+    .card-label-tag-big{
+      color: #9a9a9a !important;
+    }
+    .main-container{
+      background: #303030!important;
+    }
+    .mat-toolbar.mat-primary {
+        background: #424242 !important;
+        color: rgba(255, 255, 255, 0.87)!important;
+    }
+    .card-label-tag{
+        color: #f5f5f5!important;
+    }
+    .bottom-drawer-menu-box{
+        background: #424242!important;
+    }
+    .venda-box-produto-info-data-item {
+      background: #424242!important;
+    }
+    .venda-show-client-box{
+      background: #303030!important;
+    }
+    .venda-box-produto{
+      border: 1px solid #303030!important;
+      background: #303030!important;
+    }
+    .venda-box-produto:hover{
+      border: 1px solid #141414!important;
+    }
+
+    .mat-app-background{
+      background: #004466!important;
+    }
+
+    .mat-menu-panel {
+      background: #303030!important;
+      color: #CCCCCC!important;
+    }
+    .mat-menu-item{
+      color: #CCCCCC!important;
+    }
+    .mat-menu-item .mat-icon {
+        color: #CCCCCC!important;
+    }
+    .bottom-drawer-card-pannel-value{
+      color: #CCCCCC!important;
+    }
+
+  @include angular-material-theme($dark-theme);
+}
+
+
+
+.mat-toolbar.mat-primary {
+  background: rgb(255, 255, 255)!important;
+  color:#000000!important;
+}

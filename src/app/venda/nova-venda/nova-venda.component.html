@@ -1,0 +1,217 @@
+
+<mat-toolbar color="primary" class="mat-elevation-z2"> 
+    <mat-toolbar-row> 
+        <div class="mat-toolbar-center">
+            <h1>Nova venda</h1>
+            <mat-slide-toggle [checked]="themeService.isDarkTheme | async" (change)="toggleDarkTheme($event.checked)" class="margin-left-auto">Escuro</mat-slide-toggle> 
+        </div>
+    </mat-toolbar-row> 
+  </mat-toolbar>
+  <div class="main-container">
+    <mat-card class="card-center">
+        <mat-card-content>
+            <div class="card-block">
+                <mat-form-field class="input-full-width">
+                    <input matInput placeholder="Emissão" value="05/12/2019" disabled>
+                </mat-form-field>
+                <div class="venda-show-client-box">
+                    <div class="venda-show-client-box-content">
+                        <div class="venda-show-client-box-label">Pão de Açúcar RJ</div>
+                        <div><button mat-icon-button color="primary"><mat-icon>delete</mat-icon></button></div>
+                    </div>
+                </div>
+                <button (click)="buscarClientDialog()" mat-flat-button color="primary" class="button-full-width">
+                    <mat-icon>search</mat-icon>
+                    Selecionar cliente
+                </button>
+                <mat-slide-toggle>Emitir nota fiscal</mat-slide-toggle>
+                <div class="card-tag">Prazo para pagamento: <span>70 Dias</span></div>
+                <div class="card-tag">Desconto: <span>20%</span></div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="card-block-collun">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <div class="card-block">
+                    <div class="card-label-tag">Valor custo</div>
+                    <div class="card-label-tag-big">R$ 65,60</div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-content>
+                <div class="card-block">
+                    <div class="card-label-tag">Valor venda</div>
+                    <div class="card-label-tag-big">R$ 82,00</div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-content>
+                <div class="card-block">
+                    <div class="card-label-tag">Custo total</div>
+                    <div class="card-label-tag-big">R$ 56,00</div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-content>
+                <div class="card-block">
+                    <div class="card-label-tag">Média Lucro</div>
+                    <div class="card-label-tag-big">11,17%</div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <div class="card-block-line">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Produtos</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+
+                <div class="venda-box-produto-list">
+
+                    <ng-container *ngFor="let item of arrProdutos">
+                        <div class="venda-box-produto">
+                            <div class="venda-box-produto-container">
+                                <div class="venda-box-produto-info-header">
+                                    <div class="venda-box-produto-info-header-icon">
+                                        <img src="https://rast.thothcompany.com.br/uploads/images/produto/70a3d520a0a3c72c926f1e6bbc9fa12c.PNG">
+                                    </div>
+                                    <div class="venda-box-produto-info-header-title">
+                                        GOIABA VERMELHA SUPER 5 KG
+                                        <div class="venda-box-produto-info-sub-header">
+                                            <div class="venda-box-produto-info-sub-header-title">Fornecedor :</div>
+                                            <div class="venda-box-produto-info-sub-header-label"> MC Coelho</div>
+                                        </div>
+                                    </div>
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <mat-icon>edit</mat-icon>
+                                        <span>Editar</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <mat-icon>delete</mat-icon>
+                                        <span>Remover</span>
+                                    </button>
+                                    </mat-menu>
+                                </div>
+
+                                <div class="venda-box-produto-info-data">
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Quantidade</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">1</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Unid. Medida</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">Caixa</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Unitário C/Desc.</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">R$ 64,00</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Unitário S/Desc.</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">R$ 80,00</div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Total C/Desc.</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">R$ 64,00</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Total S/Desc.</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">R$ 80,00</div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Custo Unitário</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">R$ 55,00</div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="venda-box-produto-info-data-item">
+                                        <div class="venda-box-produto-info-data-item-content">
+                                            <div class="venda-box-produto-info-data-item-content-title">Margem</div>
+                                            <div class="venda-box-produto-info-data-item-content-label">11,25%</div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+  </div>
+<div class="bottom-drawer-menu-box">
+
+    <div class="bottom-drawer-menu-box-content">
+
+        <div class="bottom-drawer-card-pannel">
+            <div class="bottom-drawer-card-pannel-title">Lucro Total</div>
+            <div class="bottom-drawer-card-pannel-value">R$ 350,28</div>
+        </div>
+
+        <div>
+            <button mat-button color="primary">
+                <mat-icon>checked</mat-icon>
+                Finalizar
+            </button>
+            
+        </div>
+
+
+    </div>
+
+    <div class="box-fab-button">
+            <button mat-fab color="primary">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+</div>
+
