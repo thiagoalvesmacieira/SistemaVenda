@@ -21,7 +21,6 @@ export class BuscarProdutoDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
   }
@@ -45,8 +44,6 @@ export class BuscarProdutoDialogComponent implements OnInit {
       });
     }
   }
-
-
   abrirCompraVirtualDialog(){
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(CompraVirtualDialogComponent, {

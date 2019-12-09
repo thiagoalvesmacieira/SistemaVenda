@@ -48,7 +48,8 @@ import { BuscarFornecedorDialogComponent } from './buscar-fornecedor-dialog/busc
     BuscarClienteDialogComponent,
     BuscarProdutoDialogComponent,
     CompraVirtualDialogComponent,
-    BuscarProdutoLoteDialogComponent
+    BuscarProdutoLoteDialogComponent,
+    BuscarFornecedorDialogComponent
   ]
 })
 
