@@ -1,1 +1,125 @@
-<p>compra-virtual-dialog works!</p>
+<div class="mat-dialog-header">
+    <div class="mat-dialog-header-back-button">
+        <button mat-icon-button [matDialogClose]="false" aria-label="Back button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div> 
+        <div class="mat-dialog-header-title">
+            Compra Virtual
+        </div>
+    </div>
+</div>
+<mat-dialog-content>
+    <div class="mat-dialog-list-container">
+        <div class="secondary-card-box">
+            <div class="secondary-card-box-content">
+
+                <div class="secondary-card-box-content-header">
+                    Entrada: 07/11/2019
+                </div>
+
+                <div>
+                    <button cdkFocusInitial mat-flat-button color="primary" class="input-full-width">
+                        <mat-icon>search</mat-icon>
+                        Selecionar Fornecedor
+                    </button>
+                </div>
+
+                <div class="compra-show-fornecedor-box">
+                    <div class="compra-show-fornecedor-box-content">
+                        <div class="compra-show-fornecedor-box-label">
+                            Pão de Acúcar RJ
+                        </div>
+                        <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="compra-show-fornecedor-box">
+                    <div class="compra-show-fornecedor-box-content">
+                        <div class="compra-show-fornecedor-box-label">
+                            221 - Morango
+                        </div>
+                    </div>
+                </div>
+
+                <div class="compra-show-fornecedor-box">
+                    <div class="compra-show-fornecedor-box-content">
+                        <div class="compra-show-fornecedor-box-label">
+                            <mat-radio-group aria-label="Select an option" color="primary" class="radio-group-grid">
+                                <mat-radio-button value="1">Caixa</mat-radio-button>
+                                <mat-radio-button value="2">Kilo</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="compra-show-fornecedor-box">
+                    <div class="compra-show-fornecedor-box-content">
+                        <div class="compra-show-fornecedor-box-label">
+                            <mat-form-field class="full-input">
+                                <input matInput placeholder="Complemento" value="Teste de complemento" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coluna-dupla">
+                    <div class="compra-show-fornecedor-box">
+                        <div class="compra-show-fornecedor-box-content">
+                            <div class="compra-show-fornecedor-box-label">
+                                <mat-form-field class="full-input">
+                                    <input matInput placeholder="Peso caixa" value="2,000" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="compra-show-fornecedor-box">
+                        <div class="compra-show-fornecedor-box-content">
+                            <div class="compra-show-fornecedor-box-label">
+                                <mat-form-field class="full-input">
+                                    <input matInput placeholder="Qtd. Caixas" value="3" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coluna-dupla">
+                    <div class="compra-show-fornecedor-box">
+                        <div class="compra-show-fornecedor-box-content">
+                            <div class="compra-show-fornecedor-box-label">
+                                <mat-form-field class="full-input">
+                                    <input matInput placeholder="Custo caixa" value="R$ 23,00" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="compra-show-fornecedor-box">
+                        <div class="compra-show-fornecedor-box-content">
+                            <div class="compra-show-fornecedor-box-label">
+                                <mat-form-field class="full-input">
+                                    <input matInput placeholder="Total" value="R$ 69,00" autocomplete="off">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-flat-button>Cancelar</button>
+    <button mat-flat-button color="primary" class="action-button-right">
+        <mat-icon>checked</mat-icon>
+        Finalizar
+    </button>
+</mat-dialog-actions>

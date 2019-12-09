@@ -1,0 +1,27 @@
+.mat-app-background{
+    height: 100vh!important;
+}
+.main-container{
+    margin: 0 auto;
+    padding: 48px 16px 16px 16px;
+    
+}
+.card-center{
+    width: 100%;
+    margin: 0 auto!important;
+    width: -webkit-fill-available;
+}
+.container-logo{
+    display: flex;
+    padding-bottom: 16px;
+}
+.container-logo img{
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+@media (min-width: 866px) {
+
+
+}

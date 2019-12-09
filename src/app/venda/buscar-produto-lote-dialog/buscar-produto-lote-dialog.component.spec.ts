@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuscarProdutoDialogComponent } from './buscar-produto-dialog.component';
+import { BuscarProdutoLoteDialogComponent } from './buscar-produto-lote-dialog.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('BuscarProdutoDialogComponent', () => {
-  let component: BuscarProdutoDialogComponent;
-  let fixture: ComponentFixture<BuscarProdutoDialogComponent>;
+describe('BuscarProdutoLoteDialogComponent', () => {
+  let component: BuscarProdutoLoteDialogComponent;
+  let fixture: ComponentFixture<BuscarProdutoLoteDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuscarProdutoDialogComponent ],
+      declarations: [ BuscarProdutoLoteDialogComponent ],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuscarProdutoDialogComponent);
+    fixture = TestBed.createComponent(BuscarProdutoLoteDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

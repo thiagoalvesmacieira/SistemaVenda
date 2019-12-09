@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BuscarClienteDialogComponent } from './buscar-cliente-dialog.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BuscarClienteDialogComponent', () => {
   let component: BuscarClienteDialogComponent;
@@ -8,7 +9,8 @@ describe('BuscarClienteDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuscarClienteDialogComponent ]
+      declarations: [ BuscarClienteDialogComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

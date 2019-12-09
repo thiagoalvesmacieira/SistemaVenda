@@ -1,0 +1,54 @@
+<div class="mat-dialog-header">
+        <div class="mat-dialog-header-back-button">
+            <button mat-icon-button [matDialogClose]="false" aria-label="Back button">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+    
+        <div> 
+            <div class="mat-dialog-header-title">
+                Lotes : <span class="mat-dialog-header-title-label">UVA VITORIA</span>
+            </div>
+        </div>
+    
+    </div>
+    <mat-dialog-content>
+        <div class="mat-dialog-list-container">
+
+            <ng-container *ngFor="let item of arrProduto">
+                <div class="secondary-card-box" tabindex="1" cdkFocusInitial>
+                    <div class="secondary-card-box-content">
+
+                        <div class="secondary-card-box-content-header">
+                            <div>
+                                Fornecedor: <span class="secondary-card-box-content-label">MC COELHO</span>
+                            </div>
+                            <div>
+                                NF: <span class="secondary-card-box-content-label">504137</span>
+                            </div>
+                        </div>
+
+                        <div class="secondary-card-box-content-data">
+                            <div>
+                                Data Entr: <span class="secondary-card-box-content-label">04/09/2019</span>
+                            </div>
+                            <div>
+                                Tipo Complem: <span class="secondary-card-box-content-label">0</span>
+                            </div>
+                            <div>
+                                Custo: <span class="secondary-card-box-content-label">R$ 55,00</span>
+                            </div>
+                            <div>
+                                Estoque: <span class="secondary-card-box-content-label">57</span>
+                            </div>
+                            <div>
+                                Unid. Medida: <span class="secondary-card-box-content-label">Caixa</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+    </mat-dialog-content>
