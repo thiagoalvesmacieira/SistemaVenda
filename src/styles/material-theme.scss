@@ -51,15 +51,10 @@ $theme: mat-light-theme($primary, $accent, $warn);
     top: 0;
     z-index: 1000;
 }
-
 @include angular-material-theme($theme);
-
-
 .mat-app-background{
   height: auto!important;
 }
-
-
 // Our dark theme
 .dark-theme {
   color: $light-primary-text;
@@ -124,10 +119,29 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
   @include angular-material-theme($dark-theme);
 }
-
-
-
 .mat-toolbar.mat-primary {
   background: rgb(255, 255, 255)!important;
   color:#000000!important;
+}
+.mat-dialog-header{
+  margin-top: -12px;
+  box-shadow: 0 5px 11px -12px rgba(0, 0, 0, 0.5);
+}
+.mat-dialog-header{
+  display: grid;
+  grid-column-gap: 8px;
+  grid-template-columns: 40px auto;
+}
+.search-form-field{
+  width: 100%;
+}
+.mat-dialog-header-back-button{
+  padding-top: 10px;
+}
+.mat-dialog-button-list{
+  width: 100%;
+  text-align: left!important;
+}
+.mat-dialog-list-container{
+  padding: 16px 0px;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BuscarClienteDialogComponent } from '../buscar-cliente-dialog/buscar-cliente-dialog.component';
+import { BuscarProdutoDialogComponent } from '../buscar-produto-dialog/buscar-produto-dialog.component';
 
 @Component({
   selector: 'app-nova-venda',
@@ -57,13 +58,28 @@ export class NovaVendaComponent implements OnInit {
         console.log('The dialog was closed : ' + result);
       });
     }
-
-
   }
 
 
 
-
+  buscarProdutoDialog(): void {
+    if(this.screenWidth > 800){
+      const dialogRef = this.dialog.open(BuscarProdutoDialogComponent, {
+        width: '600px',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed : ' + result);
+      });
+    }else{
+      const dialogRef = this.dialog.open(BuscarProdutoDialogComponent, {
+        width: '96vw',
+        maxWidth: '96vw',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed : ' + result);
+      });
+    }
+  }
 
 
 }

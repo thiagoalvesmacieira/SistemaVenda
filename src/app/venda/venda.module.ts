@@ -15,13 +15,14 @@ import { BuscarProdutoDialogComponent } from './buscar-produto-dialog/buscar-pro
 import { CompraVirtualDialogComponent } from './compra-virtual-dialog/compra-virtual-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule }   from '@angular/forms';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     NovaVendaComponent, 
     BuscarClienteDialogComponent, 
     BuscarProdutoDialogComponent, 
-    CompraVirtualDialogComponent
+    CompraVirtualDialogComponent, ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
