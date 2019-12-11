@@ -5,7 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { FormsModule }   from '@angular/forms';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ]
 })
 

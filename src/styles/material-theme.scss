@@ -53,7 +53,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 }
 @include angular-material-theme($theme);
 .mat-app-background{
-  height: auto!important;
+  height: auto;
 }
 // Our dark theme
 .dark-theme {
@@ -148,7 +148,9 @@ $theme: mat-light-theme($primary, $accent, $warn);
 
 
 
-
+.button-mat-spinner-box > .mat-progress-spinner circle{
+  stroke: #ffffff !important;
+}
 
 
 

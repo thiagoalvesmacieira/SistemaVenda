@@ -3,6 +3,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BuscarClienteDialogComponent } from '../buscar-cliente-dialog/buscar-cliente-dialog.component';
 import { BuscarProdutoDialogComponent } from '../buscar-produto-dialog/buscar-produto-dialog.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-nova-venda',
@@ -17,30 +18,25 @@ export class NovaVendaComponent implements OnInit {
   screenWidth:any = 0;
 
   constructor(
+    public authenticationService: AuthenticationService,
     public dialog: MatDialog,
     public themeService:ThemeService) {
-
   }
-
   ngOnInit() {
-
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-
   }
-
+  ngAfterViewInit(){
+    console.log("VISUALIZAÇÃO CARREGADA");
+  }
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked);
   }
-
-
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
      this.screenHeight = window.innerHeight;
      this.screenWidth = window.innerWidth;
   }
-
-
   buscarClientDialog(): void {
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(BuscarClienteDialogComponent, {
@@ -59,9 +55,6 @@ export class NovaVendaComponent implements OnInit {
       });
     }
   }
-
-
-
   buscarProdutoDialog(): void {
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(BuscarProdutoDialogComponent, {

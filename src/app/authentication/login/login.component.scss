@@ -20,7 +20,28 @@
     max-width: 260px;
     margin: 0 auto;
 }
-
+.mat-spinner-color::ng-deep circle{
+    stroke: #FFFFFF !important;
+}
+.button-mat-spinner-box{
+    margin: 0 auto;
+    width: 40px;
+    padding: 6px;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #fff !important;
+}
+.mat-app-background {
+    height: 100%!important;
+}
+.error-message-box{
+    border: 1px solid rgb(255, 104, 104);
+    background: rgb(255, 195, 195);
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
 @media (min-width: 866px) {
 
 
