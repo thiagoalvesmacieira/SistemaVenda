@@ -13,8 +13,7 @@
         </mat-form-field>
     </div>
 </div>
-<mat-dialog-content>
-
+<mat-dialog-content class="custom-mat-dialog-content">
     <div class="mat-dialog-list-container">
         <ng-container *ngFor="let cliente of arrProduto">
             <button mat-button class="mat-dialog-button-list" [matDialogClose]="item">
@@ -26,9 +25,5 @@
                 </div>
             </button>
         </ng-container>
-
-        
-
-
     </div>
 </mat-dialog-content>

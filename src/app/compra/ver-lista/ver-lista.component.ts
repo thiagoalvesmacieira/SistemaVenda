@@ -43,8 +43,10 @@ export class VerListaComponent implements OnInit {
       });
     }else{
       const dialogRef = this.dialog.open(AdicionarProdutoDialogComponent, {
-        width: '96vw',
-        maxWidth: '96vw',
+        maxHeight: '100vh',
+        height: '100%',
+        width: '100%',
+        maxWidth: '100vh',
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed : ' + result);
