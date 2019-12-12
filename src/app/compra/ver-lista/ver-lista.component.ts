@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ver-lista',
@@ -20,7 +21,6 @@ export class VerListaComponent implements OnInit {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
   }
-
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
      this.screenHeight = window.innerHeight;

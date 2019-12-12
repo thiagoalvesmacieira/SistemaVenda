@@ -16,44 +16,49 @@
             <ng-container *ngFor="let item of arrLista">
     
             <mat-card>
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image">
-                        <img src="https://rast.thothcompany.com.br/uploads/images/produto/424deae3558afc1a232b704a8ce386f8.jpg">
-                    </div>
-                    <mat-card-title>MELÃO AMARELO</mat-card-title>
-                    <mat-card-subtitle>
-                        12uni x R$ 1,50
-
-                    </mat-card-subtitle>
-                    <button class="card-right-menu-header" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
-                        <mat-icon>edit</mat-icon>
-                        <span>Editar</span>
-                    </button>
-                    <button mat-menu-item>
-                        <mat-icon>delete</mat-icon>
-                        <span>Remover</span>
-                    </button>
-                    </mat-menu>
-                </mat-card-header>
-
+                
+                <div class="mat-card-main-header">
+                    <mat-checkbox class="mat-card-main-header-checkbox"></mat-checkbox>
+                    <mat-card-header>
+                        
+                        <div mat-card-avatar class="example-header-image">
+                            <img src="https://rast.thothcompany.com.br/uploads/images/produto/424deae3558afc1a232b704a8ce386f8.jpg">
+                        </div>
+                        <mat-card-title>MELÃO AMARELO</mat-card-title>
+                        <mat-card-subtitle>
+                            12uni x R$ 1,50
+                        </mat-card-subtitle>
+                        <button class="card-right-menu-header" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Remover</span>
+                        </button>
+                        </mat-menu>
+                    </mat-card-header>
+                </div>
                 <mat-card-content>
                     <div class="card-item-value">
                         R$ 18,00
                     </div>
-                    
-    
                 </mat-card-content>
 
                 <mat-card-actions>
                     <div class="mat-card-actions-container">
-                    <button mat-button>
-                        <mat-icon color="primary">person</mat-icon>
-                        Nome do cliente
-                    </button>
+                    <mat-chip-list aria-label="Lista Usuários">
+                        <mat-chip>
+                            <div class="mat-chip-icon">
+                                <img src="https://icon-library.net/images/avatar-icon-images/avatar-icon-images-4.jpg">
+                            </div>
+                            João
+                        </mat-chip>
+                        </mat-chip-list>
                     <button mat-icon-button class="card-right-menu-header">
                         <mat-icon color="primary">cloud_done</mat-icon>
                     </button>
@@ -69,6 +74,11 @@
         <div class="bottom-drawer-menu-container">
             <div class="bottom-drawer-list-data-container">
                 <div class="bottom-drawer-list-data-value">R$ 150,27</div>
+                <div class="bottom-drawer-list-data-action">
+                    <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                </div>
             </div>
             
 

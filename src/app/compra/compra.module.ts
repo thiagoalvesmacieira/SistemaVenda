@@ -12,9 +12,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { CompraComponent } from './compra.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { AdicionarProdutoDialogComponent } from './adicionar-produto-dialog/adicionar-produto-dialog.component';
+import { CriarProdutoDialogComponent } from './criar-produto-dialog/criar-produto-dialog.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { AdicionarUsuarioListaDialogComponent } from './adicionar-usuario-lista-dialog/adicionar-usuario-lista-dialog.component';
+import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.component';
+import { AdicionarProdutoConfirmDialogComponent } from './adicionar-produto-confirm-dialog/adicionar-produto-confirm-dialog.component';
 
 @NgModule({
-  declarations: [ListasComponent, VerListaComponent, CompraComponent],
+  declarations: [
+    ListasComponent, 
+    VerListaComponent, 
+    CompraComponent, 
+    AdicionarProdutoDialogComponent, 
+    CriarProdutoDialogComponent, 
+    ConfirmDialogComponent, 
+    AdicionarUsuarioListaDialogComponent, BuscarUsuarioComponent, AdicionarProdutoConfirmDialogComponent
+  ],
   imports: [
     CommonModule,
     CompraRoutingModule,
@@ -23,7 +40,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressBarModule,
+    MatChipsModule,
+    MatCheckboxModule
   ]
 })
 export class CompraModule { }

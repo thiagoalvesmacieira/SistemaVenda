@@ -590,10 +590,44 @@ $max-width-window:800px;
 }
 .bottom-drawer-list-data-value{
   font-size: 26px;
-  font-weight: 500;
-  color: #0088cc;
+  font-weight: 500;   
   padding-left: 8px;
   padding-top: 8px;
+  width: 100%;
+}
+.bottom-drawer-list-data-action{
+  margin-left: auto;
+  padding-right: 16px;
+}
+.list-itens-progess{
+  display: flex;
+}
+.list-itens-progess-content-left{
+  width: 100%;
+  padding: 7px 16px 7px 0px;
+}
+.list-itens-progess-content-right{
+  font-weight: 500;
+}
+.mat-chip-icon{
+  width: 24px;
+  height: 24px;
+  border-radius: 60px;
+  overflow: hidden;
+  margin-right: 8px;
+  margin-left: -9px;
+}
+.mat-chip-icon img{
+  max-width: 100%;
+}
+.mat-card-main-header{
+  display: flex;
+}
+.mat-card-main-header-checkbox{
+  margin: 8px;
+}
+.mat-card-header{
+  width: 100%;
 }
 //#########################################################
 //#########################################################
