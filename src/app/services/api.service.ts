@@ -7,6 +7,7 @@ import { DataLogin, Api, TokenAutenticacao } from '../model/authentication.model
 
 import {Observable, throwError} from 'rxjs';
 import {catchError, tap, map} from 'rxjs/operators';
+import { Cliente } from '../model/cliente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,17 @@ export class ApiService {
    });
     return new RequestOptions({ headers: this.reqHeader });
   }
+
   login(dataLogin:DataLogin):Observable<TokenAutenticacao>{
     return this.http.post<TokenAutenticacao>(this.api.url + "auth/login/", dataLogin).pipe(
        tap(data => this.authenticationService.salvarTokenStorage(data))
+    );
+  }
+  getListaCliente():Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(this.api.url + "getClientes").pipe(
+      tap(data =>{
+
+      })
     );
   }
 

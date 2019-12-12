@@ -425,3 +425,177 @@ $max-width-window:800px;
 /* @media (prefers-color-scheme: dark) { 
     body { background: black; }
 } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//#########################################################
+//#########################################################
+//#########################################################
+//COMPRA
+.main-container {
+  padding: 0px;
+  margin: 0 auto;
+  display: grid;
+  grid-row-gap: 8px;
+  background: #f6f8fa;
+  max-width: 800px;
+}
+.bottom-drawer-menu{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  width: 100%;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px -7px 10px -5px rgba(0, 0, 0, 0.10);
+  -moz-box-shadow: 0px -7px 10px -5px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px -7px 10px -5px rgba(0, 0, 0, 0.10);
+}
+.bottom-drawer-menu-container{
+  padding: 8px;
+}
+.bottom-drawer-menu-itens{
+  margin: 0 auto;
+  max-width: 832px;
+  width: 100%;
+  display: flex;
+}
+.button-drawer-menu-button-container{
+  width: 100%;
+  display: flex;
+}
+.button-drawer-menu-button-container button{
+  margin: 0 auto;
+}
+.main-list-itens{
+  display: grid;
+  grid-row-gap: 8px;
+  padding: 8px 8px 68px 8px;
+}
+.mat-elevation-z2{
+  -webkit-box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.10)!important;
+  -moz-box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.10)!important;
+  box-shadow: 0px 7px 10px -5px rgba(0, 0, 0, 0.10)!important;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+  -webkit-box-shadow: 0px 0px 7px -5px rgba(0,0,0,0.18);
+  -moz-box-shadow: 0px 0px 7px -5px rgba(0,0,0,0.18);
+  box-shadow: 0px 0px 7px -5px rgba(0,0,0,0.18);
+}
+.mat-card-title {
+  font-size: 18px!important;
+}
+
+.mat-app-background {
+  background-color: #f6f8fa!important;
+}
+.mat-card-avatar img{
+  max-width: 100%;
+}
+.mat-card-actions-container{
+  width: 100%;
+  display: flex;
+}
+.card-right-menu-header{
+  margin-left: auto!important;
+}
+.card-item-value{
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: #0088cc;
+}
+.bottom-drawer-list-data-container{
+  display: flex;
+}
+.bottom-drawer-list-data-value{
+  font-size: 26px;
+  font-weight: 500;
+  color: #0088cc;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+//#########################################################
+//#########################################################
+//#########################################################
+//#########################################################

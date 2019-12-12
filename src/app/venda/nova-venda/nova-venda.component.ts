@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BuscarClienteDialogComponent } from '../buscar-cliente-dialog/buscar-cliente-dialog.component';
 import { BuscarProdutoDialogComponent } from '../buscar-produto-dialog/buscar-produto-dialog.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { IndexedDbService } from 'src/app/services/indexed-db.service';
 
 @Component({
   selector: 'app-nova-venda',
@@ -18,6 +19,7 @@ export class NovaVendaComponent implements OnInit {
   screenWidth:any = 0;
 
   constructor(
+    public indexedDBService:IndexedDbService,
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
     public themeService:ThemeService) {

@@ -1,0 +1,73 @@
+<mat-toolbar color="primary" class="mat-elevation-z2"> 
+    <mat-toolbar-row>
+        <div class="mat-toolbar-center">
+            <h1>Lista</h1>
+            <mat-slide-toggle [checked]="themeService.isDarkTheme | async" (change)="toggleDarkTheme($event.checked)" class="margin-left-auto">Escuro</mat-slide-toggle> 
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="main-container">
+
+    <div class="main-list-itens">
+        <ng-container *ngFor="let item of arrLista">
+
+        <mat-card>
+            <mat-card-title>
+                Nome do Item
+            </mat-card-title>
+            <mat-card-subtitle>12/12/2019</mat-card-subtitle>
+            <mat-card-content>
+
+                
+
+
+
+
+
+
+
+
+
+
+            </mat-card-content>
+            <mat-card-actions>
+                
+                
+                <button mat-button>
+                    <mat-icon color="primary">group</mat-icon>
+                    5
+                </button>
+                <button mat-button>
+                    <mat-icon color="primary">cloud_done</mat-icon>
+                </button>
+
+            </mat-card-actions>
+            
+        </mat-card>
+
+        </ng-container>
+    </div>
+</div>
+<div class="bottom-drawer-menu">
+    <div class="bottom-drawer-menu-container">
+        <div class="bottom-drawer-menu-itens">
+
+            <div class="button-drawer-menu-button-container">
+                <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                    <mat-icon>person</mat-icon>
+                </button>
+            </div>
+
+
+            <div class="button-drawer-menu-button-container">
+                <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
