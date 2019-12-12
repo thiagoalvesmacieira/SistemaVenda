@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { AdicionarProdutoDialogComponent } from '../adicionar-produto-dialog/adicionar-produto-dialog.component';
 
 @Component({
   selector: 'app-ver-lista',
@@ -14,7 +16,8 @@ export class VerListaComponent implements OnInit {
   screenWidth:any = 0;
 
   constructor(
-    public themeService:ThemeService
+    public themeService:ThemeService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -28,6 +31,25 @@ export class VerListaComponent implements OnInit {
   }
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked);
+  }
+
+  buscarProdutoDialog(): void {
+    if(this.screenWidth > 800){
+      const dialogRef = this.dialog.open(AdicionarProdutoDialogComponent, {
+        width: '600px',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed : ' + result);
+      });
+    }else{
+      const dialogRef = this.dialog.open(AdicionarProdutoDialogComponent, {
+        width: '96vw',
+        maxWidth: '96vw',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed : ' + result);
+      });
+    }
   }
 
 }

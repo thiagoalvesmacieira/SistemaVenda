@@ -21,6 +21,10 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { AdicionarUsuarioListaDialogComponent } from './adicionar-usuario-lista-dialog/adicionar-usuario-lista-dialog.component';
 import { BuscarUsuarioComponent } from './buscar-usuario/buscar-usuario.component';
 import { AdicionarProdutoConfirmDialogComponent } from './adicionar-produto-confirm-dialog/adicionar-produto-confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule }   from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,15 @@ import { AdicionarProdutoConfirmDialogComponent } from './adicionar-produto-conf
     MatMenuModule,
     MatProgressBarModule,
     MatChipsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
+  entryComponents: [
+    AdicionarProdutoDialogComponent,
+    AdicionarProdutoConfirmDialogComponent
   ]
 })
 export class CompraModule { }

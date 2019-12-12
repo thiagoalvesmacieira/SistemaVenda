@@ -629,6 +629,23 @@ $max-width-window:800px;
 .mat-card-header{
   width: 100%;
 }
+.mat-toolbar-center h1{
+  margin-top: 4px!important;
+}
+.button-icon-image{
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+  margin: 6px;
+
+}
+.button-icon-image img{
+  max-width: 100%;
+}
+.button-content-image-icon{
+  display: flex;
+
+}
 //#########################################################
 //#########################################################
 //#########################################################

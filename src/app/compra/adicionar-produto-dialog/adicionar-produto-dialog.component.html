@@ -1,1 +1,34 @@
-<p>adicionar-produto-dialog works!</p>
+<div class="mat-dialog-header">
+    <div class="mat-dialog-header-back-button">
+        <button mat-icon-button [matDialogClose]="false" aria-label="Back button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div>  
+        <mat-form-field class="search-form-field">
+            <input cdkFocusInitial matInput type="text" placeholder="Buscar Produto" [(ngModel)]="value" name="search">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+</div>
+<mat-dialog-content>
+
+    <div class="mat-dialog-list-container">
+        <ng-container *ngFor="let cliente of arrProduto">
+            <button mat-button class="mat-dialog-button-list" [matDialogClose]="item">
+                <div class="button-content-image-icon">
+                    <div class="button-icon-image">
+                        <img src="https://images.vexels.com/media/users/3/143152/isolated/preview/3969b58afeeddbe056f8a8d64401f5b9---cone-de-cluster-de-uvas-by-vexels.png">
+                    </div>
+                    <div>Nome Produto</div>
+                </div>
+            </button>
+        </ng-container>
+
+        
+
+
+    </div>
+</mat-dialog-content>
