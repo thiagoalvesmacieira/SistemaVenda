@@ -1,108 +1,264 @@
 import { Injectable } from '@angular/core';
+import { Lista } from '../model/lista.model';
+import { Produto } from '../model/produto.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IndexedDbService {
 
-  banco:any;
-  bancoVersao:number = 1;
-  bancoNome:string = "SistemaVenda";
+  databaseName: string = "listaDb";
+  version: number = 2;
+  request: any;
+  db: any;
 
   constructor() { 
+    this.createDatabase();
+  }
+  createDatabase() {
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
 
-      this.banco = indexedDB.open(this.bancoNome, this.bancoVersao);
+    request.onsuccess = function (event) {
+      db = request.result;
+      console.log('Banco de dados aberto com sucesso!');
+      return db;
+    };
 
-      this.banco.onupgradeneeded = function(event) {
-        //fazer a criação das tabelas, indices e popular o banco se necessário
-        let db = event.target.result;
+    request.onupgradeneeded = function (event) {
 
-        let cliente = db.createObjectStore("cliente", { keyPath: "cliente_id", autoIncrement: true });
-        
-        cliente.createIndex('cliente_id', 'cliente_id', {unique: true});
-        cliente.createIndex('cliente_codigo', 'cliente_codigo', {unique: true});
-        cliente.createIndex('cliente_nome', 'cliente_nome', {unique: false});
-        cliente.createIndex('cliente_nome_fantasia', 'cliente_nome_fantasia', {unique: false});
+      db = event.target.result;
 
-        let item = {"cliente_id": "1","cliente_codigo": "1","cliente_nome": "VENDA A VISTA","cliente_nome_fantasia": "VENDA A VISTA"};
-        let item2 = {"cliente_id": "2","cliente_codigo": "2","cliente_nome": "VENDA A VISTA","cliente_nome_fantasia": "VENDA A VISTA"};
+      let objectTableListas: any;
 
-        cliente.add(item);
-        cliente.add(item2);
-      /*   console.log("DATA : " + JSON.stringify(cliente.get())); */
-/*         cliente.add({clientes: 'Valor 2'});
-        cliente.add({clientes: 'Valor 3'}); */
+      if (!db.objectStoreNames.contains('LISTAS')) {
+        //#########################################################################
+        //#########################################################################
+        //Criação da tabela Lista
+        objectTableListas = db.createObjectStore('LISTAS', { keyPath: 'id' });
+        objectTableListas.createIndex('id', 'id', { unique: true });
+        objectTableListas.createIndex('id_user', 'id_user', { unique: false });
+        objectTableListas.createIndex('lista_nome', 'lista_nome', { unique: false });
+        objectTableListas.createIndex('timestamp', 'timestamp', { unique: false });
+        //#########################################################################
+        //#########################################################################
+      }
 
-        var transaction = this.db.transaction('cliente', "readwrite");
-
-        var store = transaction.objectStore('cliente');
-        var request = store.get(1);
-
-        request.onsuccess = function (event) {
-     
-
-
-
-
-            var cursor = event.target.result;
-            if (cursor) {
-                console.log(cursor.value);
-                cursor.continue();
-            }
+      if (!db.objectStoreNames.contains('PRODUTOS')) {
+        //#########################################################################
+        //#########################################################################
+        //Criação da tabela Lista
+        objectTableListas = db.createObjectStore('PRODUTOS', { keyPath: 'id' });
+        objectTableListas.createIndex('id', 'id', { unique: true });
+        objectTableListas.createIndex('id_user', 'id_user', { unique: false });
+        objectTableListas.createIndex('nome', 'nome', { unique: false });
+        objectTableListas.createIndex('imagem', 'imagem', { unique: false });
+        objectTableListas.createIndex('timestamp', 'timestamp', { unique: false });
+        //#########################################################################
+        //#########################################################################
+      }
 
 
+      return db;
+    }
+    request.onerror = function (event) {
+      console.log('Falha ao abrir banco de dados!');
+    };
+  }
+  getDados(tabela:string){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
+    request.onsuccess = function (e) {
+      db = request.result;
+      let data:any = db.transaction(tabela, "readwrite").objectStore(tabela).getAll();
+      data.onsuccess = function(event){
+        let cursor = event.target.result
+        return cursor;
+      }
+    };
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
+  }
+  salvarDados(dados:any, tabela:string){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
+    request.onsuccess = function (event) {
+      db = request.result;
+      db.transaction(tabela, 'readwrite').objectStore(tabela).add(dados);
+    };
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
+  }
+  deletarDados(id_item:any, tabela:string){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
+    request.onsuccess = function (e) {
+      db = request.result;
+      let data:any = db.transaction(tabela, "readwrite").objectStore(tabela).delete(id_item);
+      data.onsuccess = function(event){
+        let cursor = event.target.result
+        return cursor;
+      }
+    };
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
+  }
+  atualizarDados(dados:any, tabela:string){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
+    request.onsuccess = function (e) {
+      db = request.result;
+      let data:any = db.transaction(tabela, "readwrite").objectStore(tabela).put(dados);
+      data.onsuccess = function(event){
+        let cursor = event.target.result
+        return cursor;
+      }
+    };
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
 
-            
+    //Date.now()
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+ /*  criarNovaLista(lista:Lista){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
+    request.onsuccess = function (event) {
+      db = request.result;
+      db.transaction(['LISTAS'], 'readwrite').objectStore('LISTAS').add({
+          id: lista.id,
+          id_user: lista.id_user,
+          lista_nome:lista.lista_nome
+        });
+    };
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
+  }
+  getLista(){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
+    request.onsuccess = function (e) {
+      db = request.result;
+      let data:any = db.transaction("LISTAS", "readwrite").objectStore('LISTAS').getAll();
+      data.onsuccess = function(event){
+        let cursor = event.target.result;
+        if(cursor){
+          console.log("DATA : " + JSON.stringify(cursor));
         }
-   
-        // Quando a transação é executada com sucesso
-        transaction.oncomplete = function(event) {
-  
-  
-        };
-        
-        // Quando ocorre algum erro na tansação
-        transaction.onerror = function(event) {
-
       }
-      
-      this.banco.onsuccess = function (event) { 
-          //sucesso ao criar/abrir o banco de dados
-        console.log("SUCESSO AO ABRIR O BANCO");
-
-      }
-      
-      this.banco.onerror = function (event) { 
-        console.log("ERRO AO CRIAR O BANCO");
-          //erro ao criar/abrir o banco de dados
-      }
-
-    
-
-/*       var transaction = this.banco.transaction('cliente', "readwrite");
-
-      var store = transaction.objectStore('contato');
-      var request = store.get(1);
-      request.onsuccess = function (event) {
-          console.log(event.target.result);
-      }
- 
-      // Quando a transação é executada com sucesso
-      transaction.oncomplete = function(event) {
-
-
-      };
-      
-      // Quando ocorre algum erro na tansação
-      transaction.onerror = function(event) {
-      }; */
-    
+    };
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
   }
 
 
+  criarProduto(){
+    let request: any;
+    let db: any;
+    request = window.indexedDB.open(this.databaseName);
 
+    request.onsuccess = function (event) {
 
+      db = request.result;
+
+      for(let i = 0; i <= 20; i++){
+
+        db.transaction(['PRODUTOS'], 'readwrite').objectStore('PRODUTOS').add({
+          id:i,
+          id_user:1,
+          nome:"PRODUTO " + i,
+          imagem:"https://images.vexels.com/media/users/3/143152/isolated/preview/3969b58afeeddbe056f8a8d64401f5b9---cone-de-cluster-de-uvas-by-vexels.png"
+        });
+      }
+
+    };
+
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
 
   }
+
+
+getProdutos(){
+    let request: any;
+    let db: any;
+
+    request = window.indexedDB.open(this.databaseName);
+
+    request.onsuccess = function (e) {
+
+      db = request.result;
+      let data:any = db.transaction("PRODUTOS", "readwrite").objectStore('PRODUTOS').getAll();
+      data.onsuccess = function(event){
+        let cursor = event.target.result;
+        if(cursor){
+          console.log("PRODUTOS : " + JSON.stringify(cursor));
+        }
+      }
+    };
+
+    request.onerror = function (event) {
+      console.log('The database is opened failed');
+    };
+    
+  } 
+
+
+  insereTeste(){
+    let produto:Produto = {
+      id:2,
+      id_user:2,
+      nome:"PRODUTO 2",
+      imagem:"https://images.vexels.com/media/users/3/143152/isolated/preview/3969b58afeeddbe056f8a8d64401f5b9---cone-de-cluster-de-uvas-by-vexels.png"
+    }
+
+    this.salvarDados(produto, "PRODUTOS");
+  } */
+
+
+
 
 }

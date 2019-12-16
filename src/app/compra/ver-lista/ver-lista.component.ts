@@ -11,13 +11,14 @@ import { AdicionarProdutoDialogComponent } from '../adicionar-produto-dialog/adi
 })
 export class VerListaComponent implements OnInit {
 
-  arrLista:any[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  arrLista:any[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
   screenHeight:any = 0;
   screenWidth:any = 0;
 
   constructor(
     public themeService:ThemeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,6 @@ export class VerListaComponent implements OnInit {
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked);
   }
-
   buscarProdutoDialog(): void {
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(AdicionarProdutoDialogComponent, {
@@ -53,5 +53,7 @@ export class VerListaComponent implements OnInit {
       });
     }
   }
-
+  backPage() {
+    this._location.back();
+  }
 }

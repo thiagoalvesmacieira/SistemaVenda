@@ -587,6 +587,8 @@ $max-width-window:800px;
 }
 .bottom-drawer-list-data-container{
   display: flex;
+  max-width: 800px;
+  margin: 0 auto;
 }
 .bottom-drawer-list-data-value{
   font-size: 26px;
@@ -647,7 +649,18 @@ $max-width-window:800px;
 
 }
 .custom-mat-dialog-content{
-  max-height: 72vh!important;
+  max-height: 7 2vh!important;
+}
+.mat-dialog-header-title{
+  line-height: 40px;
+  text-align: center;
+  font-weight: 500;
+  padding-right: 40px;
+  font-size: 18px;
+}
+.form-container{
+  padding: 10px 0px;
+  width: 100%;
 }
 //#########################################################
 //#########################################################

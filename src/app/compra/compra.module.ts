@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule }   from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { CriarListaDialogComponent } from './criar-lista-dialog/criar-lista-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,10 @@ import { MatInputModule } from '@angular/material';
     AdicionarProdutoDialogComponent, 
     CriarProdutoDialogComponent, 
     ConfirmDialogComponent, 
-    AdicionarUsuarioListaDialogComponent, BuscarUsuarioComponent, AdicionarProdutoConfirmDialogComponent
+    AdicionarUsuarioListaDialogComponent,
+    BuscarUsuarioComponent, 
+    AdicionarProdutoConfirmDialogComponent,
+    CriarListaDialogComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +59,8 @@ import { MatInputModule } from '@angular/material';
   ],
   entryComponents: [
     AdicionarProdutoDialogComponent,
-    AdicionarProdutoConfirmDialogComponent
+    AdicionarProdutoConfirmDialogComponent,
+    CriarListaDialogComponent
   ]
 })
 export class CompraModule { }
