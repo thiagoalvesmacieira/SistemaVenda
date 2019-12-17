@@ -10,6 +10,8 @@ import { Produto } from 'src/app/model/produto.model';
 })
 export class CriarListaDialogComponent implements OnInit {
 
+  nomeLista:string = "";
+
   constructor(
     public indexedDbService:IndexedDbService
   ) { }
@@ -18,19 +20,16 @@ export class CriarListaDialogComponent implements OnInit {
 
   }
 
-  getProdutos(){
-
-
-    let produto:Produto = {
-      id: 5,
-      id_user: 1,
-      imagem: "https://images.vexels.com/media/users/3/143152/isolated/preview/3969b58afeeddbe056f8a8d64401f5b9---cone-de-cluster-de-uvas-by-vexels.png",
-      nome: "PRODUTO ATUALIZADO"
+  salvarLista(){
+    let anHourAgoInMilliseconds = Date.now() - 60 * 60 * 1000;
+    let lista:any = {
+      id:0,  
+      id_user:1,
+      lista_nome:this.nomeLista,
+      timestamp:anHourAgoInMilliseconds
     }
-    this.indexedDbService.atualizarDados(produto,"PRODUTOS");
-   
-   /*  this.indexedDbService.criarProduto(); */
 
-/*     this.indexedDbService.deletarDados(2,"PRODUTOS"); */
+    this.indexedDbService.salvarDados(lista, "LISTAS");
+
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Lista } from '../model/lista.model';
 import { Produto } from '../model/produto.model';
+import { Observable, Observer, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class IndexedDbService {
   version: number = 2;
   request: any;
   db: any;
+
+
+  public data = new Subject<any>();
+
 
   constructor() { 
     this.createDatabase();
@@ -29,15 +34,14 @@ export class IndexedDbService {
     request.onupgradeneeded = function (event) {
 
       db = event.target.result;
-
       let objectTableListas: any;
 
       if (!db.objectStoreNames.contains('LISTAS')) {
         //#########################################################################
         //#########################################################################
         //Criação da tabela Lista
-        objectTableListas = db.createObjectStore('LISTAS', { keyPath: 'id' });
-        objectTableListas.createIndex('id', 'id', { unique: true });
+        objectTableListas = db.createObjectStore('LISTAS', {autoIncrement: true});
+        objectTableListas.createIndex('id', 'id', { unique: false });
         objectTableListas.createIndex('id_user', 'id_user', { unique: false });
         objectTableListas.createIndex('lista_nome', 'lista_nome', { unique: false });
         objectTableListas.createIndex('timestamp', 'timestamp', { unique: false });
@@ -48,7 +52,7 @@ export class IndexedDbService {
       if (!db.objectStoreNames.contains('PRODUTOS')) {
         //#########################################################################
         //#########################################################################
-        //Criação da tabela Lista
+        //Criação da tabela Produtos
         objectTableListas = db.createObjectStore('PRODUTOS', { keyPath: 'id' });
         objectTableListas.createIndex('id', 'id', { unique: true });
         objectTableListas.createIndex('id_user', 'id_user', { unique: false });
@@ -58,29 +62,30 @@ export class IndexedDbService {
         //#########################################################################
         //#########################################################################
       }
-
-
       return db;
     }
     request.onerror = function (event) {
       console.log('Falha ao abrir banco de dados!');
     };
   }
-  getDados(tabela:string){
-    let request: any;
-    let db: any;
-    request = window.indexedDB.open(this.databaseName);
-    request.onsuccess = function (e) {
-      db = request.result;
-      let data:any = db.transaction(tabela, "readwrite").objectStore(tabela).getAll();
-      data.onsuccess = function(event){
-        let cursor = event.target.result
-        return cursor;
+  getDados(tabela:string):Promise<any[]>{
+    return new Promise(
+      function(resolve, reject){
+        let request: any;
+        let db: any;
+        request = window.indexedDB.open("listaDb");
+        request.onsuccess = function (e) {
+          db = request.result;
+          let data:any = db.transaction(tabela, "readwrite").objectStore(tabela).getAll();
+          data.onsuccess = function(event){
+            resolve(event.target.result);
+          }
+        };
+        request.onerror = function (event) {
+          console.log('The database is opened failed');
+        };
       }
-    };
-    request.onerror = function (event) {
-      console.log('The database is opened failed');
-    };
+    );
   }
   salvarDados(dados:any, tabela:string){
     let request: any;
@@ -125,11 +130,7 @@ export class IndexedDbService {
     request.onerror = function (event) {
       console.log('The database is opened failed');
     };
-
     //Date.now()
-
-
-
   }
 
 

@@ -8,12 +8,12 @@
 </mat-toolbar>
 <div class="main-container">
     <div class="main-list-itens">
-        <ng-container *ngFor="let item of arrLista">
+        <ng-container *ngFor="let lista of arrLista">
         <mat-card routerLink="/Compra/lista">
 
             <mat-card-header>
                 <mat-card-title>
-                    Nome do Item
+                    {{lista.lista_nome}}
                 </mat-card-title>
                 <mat-card-subtitle>12/12/2019</mat-card-subtitle>
                 <button mat-icon-button class="card-right-menu-header">

@@ -12,12 +12,13 @@
 
     <div class="form-container">
         <mat-form-field class="input-full-width">
-          <input cdkFocusInitial matInput placeholder="Nome da nova Lista" autocomplete="off">
+          <input cdkFocusInitial matInput placeholder="Nome da nova Lista" autocomplete="off" [(ngModel)]="nomeLista" name="nomeLista">
         </mat-form-field>
     </div>
     
-    <button (click)="getProdutos()" mat-stroked-button color="primary" class="input-full-width">
+    <button (click)="salvarLista()" mat-stroked-button color="primary" class="input-full-width">
         <mat-icon>checked</mat-icon>
         Salvar lista
     </button>
+    
 </mat-dialog-content>

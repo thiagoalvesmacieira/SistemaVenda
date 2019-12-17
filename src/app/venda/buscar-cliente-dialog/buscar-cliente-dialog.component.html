@@ -16,7 +16,7 @@
 <mat-dialog-content>
     <div class="mat-dialog-list-container">
         <ng-container *ngFor="let cliente of arrCliente">
-            <button mat-button class="mat-dialog-button-list" [matDialogClose]="item">
+            <button mat-button class="mat-dialog-button-list" [matDialogClose]="cliente">
                 <mat-icon>person</mat-icon>
                 {{cliente.cliente_nome}}
             </button>
