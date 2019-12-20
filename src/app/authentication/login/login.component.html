@@ -10,9 +10,11 @@
                     <mat-error *ngIf="loginForm.get('email').errors">
                         Por favor, informe um e-mail válido!"
                     </mat-error>
+                    <mat-icon matPrefix>email</mat-icon>
                 </mat-form-field>
                 <mat-form-field class="input-full-width">
                     <input formControlName="password" matInput placeholder="Senha" type="password" autocomplete="off" name="password">
+                    <mat-icon matPrefix>vpn_key</mat-icon>
                 </mat-form-field>
 
                 <ng-container *ngIf="errorStatus > 0">

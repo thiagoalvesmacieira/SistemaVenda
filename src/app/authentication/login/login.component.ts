@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       this.dataLogin.password = this.loginForm.get('password').value;
       //########################################################
       this.apiService.login(this.dataLogin).subscribe(d=>{
-        this.router.navigate(['/Venda']);
+        this.router.navigate(['/']);
       }, error=>{
         try {
           //Login não autorizado

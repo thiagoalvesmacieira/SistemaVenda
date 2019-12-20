@@ -49,7 +49,7 @@ export class AuthenticationService {
           this.router.navigate(['/Login']);
           localStorage.clear();
         }else{
-          this.router.navigate(['/Venda']);
+          this.router.navigate(['/']);
           this.autenticado = true;
           console.log("Você esta logado!");
         }

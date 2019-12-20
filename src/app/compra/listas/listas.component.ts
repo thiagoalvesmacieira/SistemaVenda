@@ -4,7 +4,6 @@ import { CriarListaDialogComponent } from '../criar-lista-dialog/criar-lista-dia
 import { MatDialog } from '@angular/material';
 import { IndexedDbService } from 'src/app/services/indexed-db.service';
 import { Lista } from 'src/app/model/lista.model';
-import { ListaService } from 'src/app/services/lista.service';
 
 @Component({
   selector: 'app-listas',
@@ -20,8 +19,7 @@ export class ListasComponent implements OnInit {
   constructor(
     public themeService:ThemeService,
     public dialog: MatDialog,
-    public indexedDbService:IndexedDbService,
-    public listaService:ListaService
+    public indexedDbService:IndexedDbService
   ) { }
 
   ngOnInit() {
@@ -30,11 +28,8 @@ export class ListasComponent implements OnInit {
     this.screenWidth = window.innerWidth;
 
     this.indexedDbService.getDados("LISTAS").then(data=>{
-      console.log("DDD: " + JSON.stringify(data));
       this.arrLista = data;
     });
-
-   /*  console.log("DDD: " + JSON.stringify(d)); */
 
   }
 
@@ -48,6 +43,7 @@ export class ListasComponent implements OnInit {
      this.screenHeight = window.innerHeight;
      this.screenWidth = window.innerWidth;
   }
+  
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked);
   }

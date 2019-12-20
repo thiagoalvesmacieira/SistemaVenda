@@ -24,7 +24,6 @@ export class ApiService {
     private http: HttpClient,
     public authenticationService:AuthenticationService
   ) {
-
   }
   getRequestOption():RequestOptions{
     this.reqHeader = new HttpHeaders({
@@ -35,19 +34,39 @@ export class ApiService {
    });
     return new RequestOptions({ headers: this.reqHeader });
   }
-
   login(dataLogin:DataLogin):Observable<TokenAutenticacao>{
     return this.http.post<TokenAutenticacao>(this.api.url + "auth/login/", dataLogin).pipe(
        tap(data => this.authenticationService.salvarTokenStorage(data))
     );
   }
   getListaCliente():Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(this.api.url + "getClientes").pipe(
+    return this.http.get<Cliente[]>(this.api.url + "getClientes");
+  }
+  getTotalCliente():Observable<any>{
+    return this.http.get<any>(this.api.url + "getQuantidadeClientes").pipe(
       tap(data =>{
 
       })
     );
   }
+  getUltimaAlteracao():Observable<any>{
+    return this.http.get<any>(this.api.url + "getUltimaAlteracao").pipe(
+      tap(data =>{
+
+      })
+    );
+  }
+  getListaProdutos():Observable<any>{
+    return this.http.get<any>(this.api.url + "getProdutos").pipe(
+      tap(data =>{
+
+      })
+    );
+  }
+
+
+
+
 
 
 

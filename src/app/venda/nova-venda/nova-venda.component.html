@@ -1,7 +1,10 @@
-
 <mat-toolbar color="primary" class="mat-elevation-z2"> 
-    <mat-toolbar-row> 
+    <mat-toolbar-row>
+
         <div class="mat-toolbar-center">
+            <button mat-icon-button aria-label="Back button" (click)="backClicked()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
             <h1>Nova venda</h1>
             <mat-slide-toggle [checked]="themeService.isDarkTheme | async" (change)="toggleDarkTheme($event.checked)" class="margin-left-auto">Escuro</mat-slide-toggle> 
         </div>
@@ -12,21 +15,27 @@
         <mat-card-content>
             <div class="card-block">
                 <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Emissão" value="05/12/2019" disabled>
+                    <input matInput placeholder="Emissão" [value]="venda.emissao" disabled>
                 </mat-form-field>
-                <div class="venda-show-client-box">
-                    <div class="venda-show-client-box-content">
-                        <div class="venda-show-client-box-label">Pão de Açúcar RJ</div>
-                        <div><button mat-icon-button color="primary"><mat-icon>delete</mat-icon></button></div>
+                <ng-container *ngIf="venda.cliente != null">
+                    <div class="venda-show-client-box">
+                        <div class="venda-show-client-box-content">
+                            <div class="venda-show-client-box-label">{{venda.cliente.cliente_id}} - {{venda.cliente.cliente_nome_fantasia}}</div>
+                            <div><button (click)="removerCliente()" mat-icon-button color="primary"><mat-icon>delete</mat-icon></button></div>
+                        </div>
                     </div>
-                </div>
-                <button (click)="buscarClientDialog()" mat-flat-button color="primary" class="button-full-width">
-                    <mat-icon>search</mat-icon>
-                    Selecionar cliente
-                </button>
-                <mat-slide-toggle>Emitir nota fiscal</mat-slide-toggle>
-                <div class="card-tag">Prazo para pagamento: <span>70 Dias</span></div>
-                <div class="card-tag">Desconto: <span>20%</span></div>
+                </ng-container>
+                <ng-container *ngIf="venda.cliente == null">
+                    <button (click)="buscarClientDialog()" mat-flat-button color="primary" class="button-full-width">
+                        <mat-icon>search</mat-icon>
+                        Selecionar cliente
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="venda.cliente != null">
+                    <mat-slide-toggle [(ngModel)]="venda.emitirNotaFiscal">Emitir nota fiscal</mat-slide-toggle>
+                    <div class="card-tag">Prazo para pagamento: <span>{{venda.cliente.cliente_prazo_pagamento}} Dias</span></div>
+                    <div class="card-tag">Desconto: <span>20%</span></div>
+                </ng-container>
             </div>
         </mat-card-content>
     </mat-card>
@@ -64,17 +73,13 @@
             </mat-card-content>
         </mat-card>
     </div>
-
-
     <div class="card-block-line">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Produtos</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-
                 <div class="venda-box-produto-list">
-
                     <ng-container *ngFor="let item of arrProdutos">
                         <div class="venda-box-produto">
                             <div class="venda-box-produto-container">
@@ -103,93 +108,65 @@
                                     </button>
                                     </mat-menu>
                                 </div>
-
                                 <div class="venda-box-produto-info-data">
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Quantidade</div>
                                             <div class="venda-box-produto-info-data-item-content-label">1</div>
                                         </div>
                                     </div>
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Unid. Medida</div>
                                             <div class="venda-box-produto-info-data-item-content-label">Caixa</div>
                                         </div>
                                     </div>
-
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Unitário C/Desc.</div>
                                             <div class="venda-box-produto-info-data-item-content-label">R$ 64,00</div>
                                         </div>
                                     </div>
-
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Unitário S/Desc.</div>
                                             <div class="venda-box-produto-info-data-item-content-label">R$ 80,00</div>
                                         </div>
                                     </div>
-
-
-
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Total C/Desc.</div>
                                             <div class="venda-box-produto-info-data-item-content-label">R$ 64,00</div>
                                         </div>
                                     </div>
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Total S/Desc.</div>
                                             <div class="venda-box-produto-info-data-item-content-label">R$ 80,00</div>
                                         </div>
                                     </div>
-
-
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Custo Unitário</div>
                                             <div class="venda-box-produto-info-data-item-content-label">R$ 55,00</div>
                                         </div>
                                     </div>
-
-
-
                                     <div class="venda-box-produto-info-data-item">
                                         <div class="venda-box-produto-info-data-item-content">
                                             <div class="venda-box-produto-info-data-item-content-title">Margem</div>
                                             <div class="venda-box-produto-info-data-item-content-label">11,25%</div>
                                         </div>
                                     </div>
-
-
-
-
-
-
                                 </div>
-
                             </div>
                         </div>
                     </ng-container>
-
                 </div>
             </mat-card-content>
         </mat-card>
     </div>
-
   </div>
 <div class="bottom-drawer-menu-box">
-
     <div class="bottom-drawer-menu-box-content">
         <div class="bottom-drawer-card-pannel">
             <div class="bottom-drawer-card-pannel-title">Lucro Total</div>
@@ -202,12 +179,10 @@
             </button>
         </div>
     </div>
-    
     <div class="box-fab-button">
         <button (click)="buscarProdutoDialog()" mat-fab color="primary">
             <mat-icon>add</mat-icon>
         </button>
     </div>
-
 </div>
 

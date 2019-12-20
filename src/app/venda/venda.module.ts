@@ -20,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule }   from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { BuscarFornecedorDialogComponent } from './buscar-fornecedor-dialog/buscar-fornecedor-dialog.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ListarVendasComponent } from './listar-vendas/listar-vendas.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { BuscarFornecedorDialogComponent } from './buscar-fornecedor-dialog/busc
     BuscarProdutoDialogComponent, 
     CompraVirtualDialogComponent, 
     ConfirmDialogComponent, 
-    BuscarProdutoLoteDialogComponent, BuscarFornecedorDialogComponent
+    BuscarProdutoLoteDialogComponent, BuscarFornecedorDialogComponent, ListarVendasComponent
   ],
   imports: [
     CommonModule,
@@ -42,9 +44,11 @@ import { BuscarFornecedorDialogComponent } from './buscar-fornecedor-dialog/busc
     MatMenuModule,
     MatDialogModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressBarModule
   ],
   entryComponents: [
+    ConfirmDialogComponent,
     BuscarClienteDialogComponent,
     BuscarProdutoDialogComponent,
     CompraVirtualDialogComponent,

@@ -1,0 +1,56 @@
+<mat-toolbar color="primary" class="mat-elevation-z2"> 
+    <mat-toolbar-row>
+        <div class="mat-toolbar-center">
+            <h1>Thoth Company - Vendas</h1>
+            <button class="header-right-menu" mat-icon-button aria-label="Main header menu">
+                <mat-icon>notifications</mat-icon>
+            </button>
+            <button class="header-right-menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Main header menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Sair</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="main-container">
+    <div class="card-center">
+        <div class="secondary-card-box-content">
+            <div class="main-grid">
+
+                <div class="main-card">
+                    <div class="main-card-content">
+                        <button mat-button routerLink="/Venda">
+                            <mat-icon>add</mat-icon>
+                            Nova venda
+                        </button>
+                    </div>
+                </div>
+
+                <div class="main-card">
+                    <div class="main-card-content">
+                        <button mat-button routerLink="/Venda/lista">
+                            <mat-icon>store</mat-icon>
+                            Vendas
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="main-card">
+                    <div class="main-card-content">
+                        <button mat-button>
+                            <mat-icon>settings_applications</mat-icon>
+                            Configurações
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

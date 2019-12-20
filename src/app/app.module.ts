@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatButtonModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    HttpClientModule
+    HttpClientModule,
+    MatProgressBarModule
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
