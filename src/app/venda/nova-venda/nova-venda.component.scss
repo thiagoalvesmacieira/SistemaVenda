@@ -195,7 +195,16 @@ $max-width-window:800px;
     font-weight: 500;  
     color: #08c;
 }
-
+.mat-elevation-z2 {
+    -webkit-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    -webkit-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.1);
+}
 
 @media (min-width: 866px) {
     .venda-box-produto-info-data{

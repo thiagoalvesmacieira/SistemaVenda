@@ -30,11 +30,14 @@ export class NovaVendaComponent implements OnInit {
     public indexedDBService:IndexedDbService,
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    public themeService:ThemeService) {
+    public themeService:ThemeService
+    ) {
   }
   ngOnInit() {
+
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
+
     this.buscarClientDialog();
 
     let t = new Date();
@@ -44,7 +47,6 @@ export class NovaVendaComponent implements OnInit {
     
     let today:any = dd + '/' + mm + '/' + yyyy;
     this.venda.emissao = today;
-
 
   }
   ngAfterViewInit(){
@@ -113,6 +115,8 @@ export class NovaVendaComponent implements OnInit {
     
 
 
+
+
   }
   emitirNotaFiscalDialogComfirm():void{
     let confirmDialog:ConfirmDialog = {
@@ -146,11 +150,7 @@ export class NovaVendaComponent implements OnInit {
       });
     }
   }
-
-
-
-
-  backClicked(){
+  backClicked():void{
     this._location.back();
   }
 }

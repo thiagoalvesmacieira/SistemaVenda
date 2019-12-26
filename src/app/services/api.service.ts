@@ -17,14 +17,13 @@ export class ApiService {
   readonly api:Api = {
     url:"http://192.168.137.1:8000/api/"
   }
-
   public reqHeader:any;
-
   constructor(
     private http: HttpClient,
     public authenticationService:AuthenticationService
   ) {
   }
+  
   getRequestOption():RequestOptions{
     this.reqHeader = new HttpHeaders({
       'Access-Control-Allow-Origin': this.api.url,
