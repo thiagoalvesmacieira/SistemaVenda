@@ -16,7 +16,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./nova-venda.component.scss']
 })
 export class NovaVendaComponent implements OnInit {
-  arrProdutos:any[] = [];
+  arrProdutos:any[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
   screenHeight:any = 0;
   screenWidth:any = 0;
   venda:Venda = {
@@ -45,7 +45,7 @@ export class NovaVendaComponent implements OnInit {
     let mm = String(t.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = t.getFullYear();
     
-    let today:any = dd + '/' + mm + '/' + yyyy;
+    let today:any = dd + '/' + mm + '/' + yyyy; 
     this.venda.emissao = today;
 
   }
@@ -153,4 +153,5 @@ export class NovaVendaComponent implements OnInit {
   backClicked():void{
     this._location.back();
   }
+
 }
