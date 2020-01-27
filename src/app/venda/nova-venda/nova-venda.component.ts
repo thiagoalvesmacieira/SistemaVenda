@@ -8,7 +8,9 @@ import { IndexedDbService } from 'src/app/services/indexed-db.service';
 import { Venda } from 'src/app/model/venda.model';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { ConfirmDialog } from 'src/app/model/util.model';
-import { Location } from '@angular/common';
+import { Location, LocationStrategy } from '@angular/common';
+import { Router } from '@angular/router';
+import { ProdutoLote } from 'src/app/model/produto.model';
 
 @Component({
   selector: 'app-nova-venda',
@@ -16,16 +18,22 @@ import { Location } from '@angular/common';
   styleUrls: ['./nova-venda.component.scss']
 })
 export class NovaVendaComponent implements OnInit {
-  arrProdutos:any[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  
+  dialogAberta:boolean = false;
+  arrProdutos:ProdutoLote[] = [];
   screenHeight:any = 0;
   screenWidth:any = 0;
+
   venda:Venda = {
     emissao:null,
     cliente:null,
     emitirNotaFiscal:false,
     produtos:null
   }
+
   constructor(
+    private router: Router,
+    private locationStrategy: LocationStrategy,
     private _location: Location,
     public indexedDBService:IndexedDbService,
     public authenticationService: AuthenticationService,
@@ -47,8 +55,19 @@ export class NovaVendaComponent implements OnInit {
     
     let today:any = dd + '/' + mm + '/' + yyyy; 
     this.venda.emissao = today;
+    
+    //this.preventBackButton();
 
   }
+/*   preventBackButton() {
+    //history.pushState(null, null, location.href);
+    this.locationStrategy.onPopState(() => {
+      if(this.dialogAberta){
+        history.pushState(null, null, location.href);
+        console.log("Dialog Aberta : " + this.dialogAberta);
+      }
+    })
+  } */
   ngAfterViewInit(){
     console.log("VISUALIZAÇÃO CARREGADA");
   }
@@ -61,12 +80,21 @@ export class NovaVendaComponent implements OnInit {
      this.screenWidth = window.innerWidth;
   }
   buscarClientDialog():void {
+    
     this.venda.emitirNotaFiscal = false;
+    this.dialogAberta = true;
+    history.pushState(null, null, location.href);
+
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(BuscarClienteDialogComponent, {
         width: '600px',
+        closeOnNavigation:true,
+        disableClose:true
       });
       dialogRef.afterClosed().subscribe(result => {
+        
+        this.dialogAberta = false;
+
         if(result != null && result != undefined && result != false){
           this.venda.cliente = result;
           this.emitirNotaFiscalDialogComfirm();
@@ -78,8 +106,13 @@ export class NovaVendaComponent implements OnInit {
         height: '100%',
         width: '100%',
         maxWidth: '100vh',
+        closeOnNavigation:true,
+        disableClose:true
       });
       dialogRef.afterClosed().subscribe(result => {
+
+        this.dialogAberta = false;
+
         if(result != null && result != undefined && result != false){
           this.venda.cliente = result;
           this.emitirNotaFiscalDialogComfirm();
@@ -92,12 +125,21 @@ export class NovaVendaComponent implements OnInit {
     this.buscarClientDialog();
   }
   buscarProdutoDialog():void {
+    history.pushState(null, null, location.href);
+    this.dialogAberta = true;
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(BuscarProdutoDialogComponent, {
         width: '600px',
+        closeOnNavigation:true,
+        disableClose:true
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed : ' + result);
+        if(result != null && result != false && result != undefined){
+          this.arrProdutos.push(result);
+        }else{
+          console.log("Nenhum produto selecionado!");
+        }
+        this.dialogAberta = false;
       });
     }else{
       const dialogRef = this.dialog.open(BuscarProdutoDialogComponent, {
@@ -105,9 +147,16 @@ export class NovaVendaComponent implements OnInit {
         height: '100%',
         width: '100%',
         maxWidth: '100vh',
+        closeOnNavigation:true,
+        disableClose:true
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed : ' + result);
+        if(result != null && result != false && result != undefined){
+          this.arrProdutos.push(result);
+        }else{
+          console.log("Nenhum produto selecionado!");
+        }
+        this.dialogAberta = false;
       });
     }
   }
@@ -119,6 +168,9 @@ export class NovaVendaComponent implements OnInit {
 
   }
   emitirNotaFiscalDialogComfirm():void{
+
+    history.pushState(null, null, location.href);
+    this.dialogAberta = true;
     let confirmDialog:ConfirmDialog = {
       titulo:"Emitir nota Fiscal",
       texto:"Você deseja emitir nota fiscal para este cliente ?"
@@ -126,9 +178,12 @@ export class NovaVendaComponent implements OnInit {
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         width: '400px',
-        data:confirmDialog
+        data:confirmDialog,
+        disableClose:true,
+        closeOnNavigation:true
       });
       dialogRef.afterClosed().subscribe(result => {
+        this.dialogAberta = false;
         if(result == true){
           this.venda.emitirNotaFiscal = true;
         }else{
@@ -139,9 +194,12 @@ export class NovaVendaComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         width: '96vw',
         maxWidth: '96vw',
-        data:confirmDialog
+        data:confirmDialog,
+        disableClose:true,
+        closeOnNavigation:true
       });
       dialogRef.afterClosed().subscribe(result => {
+        this.dialogAberta = false;
         if(result == true){
           this.venda.emitirNotaFiscal = true;
         }else{
@@ -152,6 +210,29 @@ export class NovaVendaComponent implements OnInit {
   }
   backClicked():void{
     this._location.back();
+  }
+  
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+
+    console.log('Back button pressed : ' + event);
+
+    if(this.dialogAberta){
+      console.log('Back button pressed : dialogAberta');
+      this.dialogAberta = false;
+      this.router.navigate(['/']);
+    }else{
+      console.log('Back button pressed : dialogFechada');
+    }
+/* 
+    console.log('Back button pressed : ' + event);
+    if(this.dialogAberta){
+      history.pushState(null, null, location.href);
+      this.dialogAberta = false;
+      console.log("Dialog Aberta : " + this.dialogAberta);
+    }else{
+
+    } */
   }
 
 }

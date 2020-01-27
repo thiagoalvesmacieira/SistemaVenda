@@ -1,0 +1,128 @@
+<div class="mat-dialog-header">
+    <div class="mat-dialog-header-back-button">
+        <button mat-icon-button [matDialogClose]="false" aria-label="Back button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div> 
+        <div class="mat-dialog-header-title">
+            {{this.produto.produtoBusca.nomeProduto}}
+        </div>
+    </div>
+</div>
+<mat-dialog-content>
+
+    <div class="mat-dialog-list-container">
+        <div class="mat-dialog-list-container-inside">
+            <div class="dialog-title">
+                    Fornecedor : 
+                <span class="mat-dialog-header-title-label">
+                    {{this.produto.produtoLote.fantasia}}
+                </span>
+            </div>
+            <div class="mat-container-double">
+
+                <div class="mat-container-double-item">
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Unidade de Medida</mat-label>
+                        <mat-select [(ngModel)]="unidadeMedidaSelecionada" (selectionChange)="aoAlterarUnidadeMedida()">
+                            <ng-container *ngFor="let unidadeMedida of this.arrUnidadesDeMedida">
+                                <mat-option [value]="unidadeMedida.unidade">{{unidadeMedida.nome}}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="mat-container-double-item">
+                    <mat-form-field class="input-full-width">
+                        <input matInput [placeholder]="labelQtdItem" value="" type="number" autocomplete="off" [(ngModel)]="quantidadeCaixas">
+                    </mat-form-field>
+                </div>
+                
+            </div>
+            <div class="mat-container-double">
+
+                <div class="mat-container-double-item" *ngIf="unidadeMedidaSelecionada == 2 || unidadeMedidaSelecionada == 3 || unidadeMedidaSelecionada == 4 || unidadeMedidaSelecionada == 5 || unidadeMedidaSelecionada == 6 || unidadeMedidaSelecionada == 7">
+                    <mat-form-field class="input-full-width">
+                        <input matInput [placeholder]="labelQtdPorCaixa" value="" type="number" autocomplete="off" [(ngModel)]="itensPorCaixa">
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="mat-container-double">
+
+                <div class="mat-container-double-item">
+                    <mat-form-field class="input-full-width">
+                        <input currencyMask matInput [placeholder]="labelValorUnitario" value="" autocomplete="off" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="mat-container-double">
+
+                <div class="mat-container-double-item" *ngIf="unidadeMedidaSelecionada == 2 || unidadeMedidaSelecionada == 3 || unidadeMedidaSelecionada == 4 || unidadeMedidaSelecionada == 5 || unidadeMedidaSelecionada == 6 || unidadeMedidaSelecionada == 7">
+                    
+                    <div class="box-show-fixed-itens">
+                        <div class="box-show-fixed-itens-label">
+                            {{labelQtdUnitariaTotal}}
+                        </div>
+                        <div class="box-show-fixed-itens-data">
+                            <ng-container *ngIf="this.itensPorCaixa > 0 && this.quantidadeCaixas > 0; else quantidadeVazia">
+                                {{this.itensPorCaixa*this.quantidadeCaixas}}
+                            </ng-container>
+                            <ng-template #quantidadeVazia>0</ng-template>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mat-container-double-item" *ngIf="unidadeMedidaSelecionada == 2 || unidadeMedidaSelecionada == 3 || unidadeMedidaSelecionada == 4 || unidadeMedidaSelecionada == 5 || unidadeMedidaSelecionada == 6 || unidadeMedidaSelecionada == 7">
+                    <div class="box-show-fixed-itens">
+                        <div class="box-show-fixed-itens-label">CUSTO</div>
+                        <div class="box-show-fixed-itens-data">
+                            <ng-container *ngIf="this.quantidadeCaixas > 0; else custoVazio">
+                                {{this.produto.produtoLote.valorCustoItem/this.quantidadeCaixas}}
+                            </ng-container>
+                            <ng-template #custoVazio>0</ng-template>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mat-container-double">
+
+                <div class="mat-container-double-item">
+                    <div class="box-show-fixed-itens">
+                        <div class="box-show-fixed-itens-label">
+                            R$ C/Desconto
+                        </div>
+                        <div class="box-show-fixed-itens-data">
+                           R$ 5,80
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mat-container-double-item">
+                    <div class="box-show-fixed-itens">
+                        <div class="box-show-fixed-itens-label">
+                           MARGEM
+                        </div>
+                        <div class="box-show-fixed-itens-data">
+                            20%
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="input-full-width" mat-stroked-button color="primary" (click)="salvarProduto()">
+        <mat-icon>checked</mat-icon>
+        Adicionar Produto
+    </button>
+</mat-dialog-actions>

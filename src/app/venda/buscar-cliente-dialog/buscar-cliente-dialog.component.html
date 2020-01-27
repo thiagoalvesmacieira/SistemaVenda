@@ -6,7 +6,7 @@
     </div>
     <div>  
         <mat-form-field class="search-form-field">
-            <input cdkFocusInitial matInput type="text" placeholder="Buscar Cliente" [(ngModel)]="termoBusca" name="search" (change)="buscarCliente()">
+            <input cdkFocusInitial matInput type="text" placeholder="Buscar Cliente" [(ngModel)]="termoBusca" name="search" (change)="getListaClienteApi()">
             <button mat-button *ngIf="termoBusca" matSuffix mat-icon-button aria-label="Clear" (click)="termoBusca=''">
                 <mat-icon>close</mat-icon>
             </button>
@@ -14,30 +14,27 @@
     </div>
 
     <div class="mat-dialog-header-action-button">
-        <button mat-icon-button (click)="buscarCliente()" aria-label="Search button">
+        <button mat-icon-button (click)="getListaClienteApi()" aria-label="Search button">
             <mat-icon>search</mat-icon>
         </button>
     </div>
 
 </div>
 <mat-dialog-content>
-
     <div class="mat-dialog-list-container">
-        
-        <ng-container *ngIf="!buscaRealizada">
+        <ng-container *ngFor="let cliente of arrCliente">
+            <button mat-button class="mat-dialog-button-list" [matDialogClose]="cliente">
+                <mat-icon>person</mat-icon>
+                {{cliente.cliente_id}} - {{cliente.cliente_nome_fantasia}}
+            </button>
+        </ng-container>
+        <mat-progress-bar mode="indeterminate" *ngIf="progressbarBusca"></mat-progress-bar>
+        <ng-container *ngIf="!buscaRealizada && !progressbarBusca">
             <div class="box-mensagem-busca">Busque pelo cliente!</div>
         </ng-container>
 
         <ng-container *ngIf="buscaRealizada && arrCliente.length == 0">
             <div class="box-mensagem-busca">Nenhum cliente encontrado pelo termo pesquisado, tente uma palavra chave diferente!</div>
         </ng-container>
-
-        <ng-container *ngFor="let cliente of arrCliente | slice:0:100">
-            <button mat-button class="mat-dialog-button-list" [matDialogClose]="cliente">
-                <mat-icon>person</mat-icon>
-                {{cliente.cliente_id}} - {{cliente.cliente_nome_fantasia}}
-            </button>
-        </ng-container>
-        
     </div>
 </mat-dialog-content>

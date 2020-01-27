@@ -15,7 +15,6 @@ export class AuthenticationService {
     expires_in:null,
   }
   autenticado:boolean = false;
-
   constructor(
     private router: Router
     ) {

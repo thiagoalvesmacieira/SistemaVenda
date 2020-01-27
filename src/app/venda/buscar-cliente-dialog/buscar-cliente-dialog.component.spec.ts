@@ -4,6 +4,7 @@ import { BuscarClienteDialogComponent } from './buscar-cliente-dialog.component'
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BuscarClienteDialogComponent', () => {
+
   let component: BuscarClienteDialogComponent;
   let fixture: ComponentFixture<BuscarClienteDialogComponent>;
 
@@ -24,4 +25,12 @@ describe('BuscarClienteDialogComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deve retornar a multiplicação', ()=>{
+ 
+    
+    
+  });
+
+  
 });

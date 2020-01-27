@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BuscarFornecedorDialogComponent } from './buscar-fornecedor-dialog.component';
+import { MatButton } from '@angular/material';
 
 describe('BuscarFornecedorDialogComponent', () => {
   let component: BuscarFornecedorDialogComponent;
@@ -8,7 +9,8 @@ describe('BuscarFornecedorDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuscarFornecedorDialogComponent ]
+      declarations: [ BuscarFornecedorDialogComponent ],
+      imports:[MatButton]
     })
     .compileComponents();
   }));

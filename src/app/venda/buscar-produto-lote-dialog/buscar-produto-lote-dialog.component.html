@@ -4,45 +4,43 @@
                 <mat-icon>arrow_back</mat-icon>
             </button>
         </div>
-    
         <div> 
             <div class="mat-dialog-header-title">
-                Lotes : <span class="mat-dialog-header-title-label">UVA VITORIA</span>
+                Lotes : <span class="mat-dialog-header-title-label">{{data.idProduto}} - {{data.nomeProduto}}</span>
             </div>
         </div>
-    
     </div>
     <mat-dialog-content>
         <div class="mat-dialog-list-container">
-
-            <ng-container *ngFor="let item of arrProduto">
-                <div class="secondary-card-box" tabindex="1" cdkFocusInitial>
+            <mat-progress-bar mode="indeterminate" *ngIf="buscandoProdutos"></mat-progress-bar>
+            <ng-container *ngFor="let produto of arrProduto">
+                <div (click)="comfirmProdutoDialog(produto)" class="secondary-card-box" tabindex="1" cdkFocusInitial>
                     <div class="secondary-card-box-content">
 
                         <div class="secondary-card-box-content-header">
                             <div>
-                                Fornecedor: <span class="secondary-card-box-content-label">MC COELHO</span>
+                                Fornecedor: <span class="secondary-card-box-content-label">{{produto.fantasia}}</span>
                             </div>
                             <div>
-                                NF: <span class="secondary-card-box-content-label">504137</span>
+                                NF: <span class="secondary-card-box-content-label">{{produto.NF}}</span>
                             </div>
                         </div>
 
                         <div class="secondary-card-box-content-data">
                             <div>
-                                Data Entr: <span class="secondary-card-box-content-label">04/09/2019</span>
+                                Data Entr: <span class="secondary-card-box-content-label">{{produto.dataCompra}}</span>
                             </div>
                             <div>
-                                Tipo Complem: <span class="secondary-card-box-content-label">0</span>
+                                Tipo Complem: <span class="secondary-card-box-content-label">{{produto.COMPLEMENTOPRODUTO}}</span>
                             </div>
                             <div>
-                                Custo: <span class="secondary-card-box-content-label">R$ 55,00</span>
+                                Custo: <span class="secondary-card-box-content-label">R$ {{produto.valorCustoItem}}</span>
                             </div>
                             <div>
-                                Estoque: <span class="secondary-card-box-content-label">57</span>
+                                Estoque: <span class="secondary-card-box-content-label">{{produto.restante}}</span>
                             </div>
                             <div>
-                                Unid. Medida: <span class="secondary-card-box-content-label">Caixa</span>
+                                Unid. Medida: <span class="secondary-card-box-content-label">{{produto.undMedida}}</span>
                             </div>
                         </div>
 

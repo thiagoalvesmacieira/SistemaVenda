@@ -2,7 +2,7 @@
     <mat-toolbar-row>
 
         <div class="mat-toolbar-center">
-            <button mat-icon-button aria-label="Back button" (click)="backClicked()">
+            <button mat-icon-button aria-label="Back button" routerLink="/">
                 <mat-icon>arrow_back</mat-icon>
             </button>
             <h1>Nova venda</h1>
@@ -80,7 +80,7 @@
             </mat-card-header>
             <mat-card-content>
                 <div class="venda-box-produto-list">
-                    <ng-container *ngFor="let item of arrProdutos">
+                    <ng-container *ngFor="let produto of arrProdutos">
                         <div class="venda-box-produto">
                             <div class="venda-box-produto-container">
                                 <div class="venda-box-produto-info-header">
@@ -88,10 +88,10 @@
                                         <img src="https://rast.thothcompany.com.br/uploads/images/produto/70a3d520a0a3c72c926f1e6bbc9fa12c.PNG">
                                     </div>
                                     <div class="venda-box-produto-info-header-title">
-                                        GOIABA VERMELHA SUPER 5 KG
+                                        {{produto.IDPRODUTO}}
                                         <div class="venda-box-produto-info-sub-header">
                                             <div class="venda-box-produto-info-sub-header-title">Fornecedor :</div>
-                                            <div class="venda-box-produto-info-sub-header-label"> MC Coelho</div>
+                                            <div class="venda-box-produto-info-sub-header-label"> {{produto.fantasia}}</div>
                                         </div>
                                     </div>
                                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">

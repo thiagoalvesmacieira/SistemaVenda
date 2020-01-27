@@ -38,36 +38,42 @@ export class ApiService {
        tap(data => this.authenticationService.salvarTokenStorage(data))
     );
   }
-  getListaCliente():Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(this.api.url + "getClientes");
+  getListaCliente(termo_busca:string):Observable<any>{
+    let requestOptions:any = this.getRequestOption();
+    return this.http.get<any>(this.api.url + "getClientes?termo_busca=" + termo_busca, requestOptions);
   }
   getTotalCliente():Observable<any>{
-    return this.http.get<any>(this.api.url + "getQuantidadeClientes").pipe(
+    let requestOptions:any = this.getRequestOption();
+    return this.http.get<any>(this.api.url + "getQuantidadeClientes", requestOptions).pipe(
       tap(data =>{
 
       })
     );
   }
+  
   getUltimaAlteracao():Observable<any>{
-    return this.http.get<any>(this.api.url + "getUltimaAlteracao").pipe(
+    let requestOptions:any = this.getRequestOption();
+    return this.http.get<any>(this.api.url + "getUltimaAlteracao", requestOptions).pipe(
       tap(data =>{
 
       })
     );
   }
-  getListaProdutos():Observable<any>{
-    return this.http.get<any>(this.api.url + "getProdutos").pipe(
+  getListaProdutos(termo_busca:string):Observable<any>{
+    let requestOptions:any = this.getRequestOption();
+    return this.http.get<any>(this.api.url + "getProdutos?termo_busca="+termo_busca, requestOptions).pipe(
       tap(data =>{
 
       })
     );
   }
+  getProdutosLote(id_produto:number):Observable<any>{
+    let requestOptions:any = this.getRequestOption();
+    return this.http.get<any>(this.api.url + "getEstoque?id_produto="+id_produto, requestOptions).pipe(
+      tap(data=>{
 
-
-
-
-
-
-
+      })
+    );
+  }
 
 }

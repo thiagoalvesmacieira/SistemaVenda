@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BuscarProdutoLoteDialogComponent } from '../buscar-produto-lote-dialog/buscar-produto-lote-dialog.component';
 import { CompraVirtualDialogComponent } from '../compra-virtual-dialog/compra-virtual-dialog.component';
+import { ApiService } from 'src/app/services/api.service';
+import { ProdutoBusca } from 'src/app/model/produto.model';
 
 @Component({
   selector: 'app-buscar-produto-dialog',
@@ -12,27 +14,45 @@ export class BuscarProdutoDialogComponent implements OnInit {
 
   screenHeight:any = 0;
   screenWidth:any = 0;
-
-  value = '';
-  arrProduto:any[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
-
+  arrProduto:ProdutoBusca[] = [];
+  termo_busca:string = "";
+  buscandoProdutos:boolean = false;
+  buscaRealizada:boolean = false;
   constructor(
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    public apiService:ApiService,
+    public dialogRef: MatDialogRef<BuscarProdutoDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any
+  ) {}
 
   ngOnInit() {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
+    this.buscaListaProduto();
   }
-
-
-  buscarProdutoLoteDialog(): void {
+  buscaListaProduto(){
+    this.buscandoProdutos = true;
+    this.arrProduto = [];
+    this.apiService.getListaProdutos(this.termo_busca).subscribe(d=>{
+      this.arrProduto = d;
+      this.buscandoProdutos = false;
+      this.buscaRealizada = true;
+    }, error=>{
+      this.buscandoProdutos = false;
+    });
+  }
+  buscarProdutoLoteDialog(produto:ProdutoBusca): void {
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(BuscarProdutoLoteDialogComponent, {
-        width: '600px',
+        width: '550px',
+        data:produto
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed : ' + result);
+        if(result != null && result != false && result != undefined){
+          this.dialogRef.close(result);
+        }else{
+          console.log("Nenhum produto selecionado!");
+        }
       });
     }else{
       const dialogRef = this.dialog.open(BuscarProdutoLoteDialogComponent, {
@@ -40,16 +60,21 @@ export class BuscarProdutoDialogComponent implements OnInit {
         height: '100%',
         width: '100%',
         maxWidth: '100vh',
+        data:produto
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed : ' + result);
+        if(result != null && result != false && result != undefined){
+          this.dialogRef.close(result);
+        }else{
+          console.log("Nenhum produto selecionado!");
+        }
       });
     }
   }
   abrirCompraVirtualDialog(){
     if(this.screenWidth > 800){
       const dialogRef = this.dialog.open(CompraVirtualDialogComponent, {
-        width: '600px',
+        width: '550px',
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed : ' + result);

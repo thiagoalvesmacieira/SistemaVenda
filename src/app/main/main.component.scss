@@ -33,14 +33,11 @@
 .mat-toolbar-center h1{
     width: 100%;
 }
-
-
 @media (max-width: 600px) {
     .main-grid{
         grid-template-columns: auto auto;
     }
 }
-
 @media (max-width: 500px) {
     .main-grid{
         grid-template-columns: auto;
