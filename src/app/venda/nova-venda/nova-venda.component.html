@@ -80,7 +80,7 @@
             </mat-card-header>
             <mat-card-content>
                 <div class="venda-box-produto-list">
-                    <ng-container *ngFor="let produto of arrProdutos">
+                    <ng-container *ngFor="let produto of arrProdutos; let arrIndex = index">
                         <div class="venda-box-produto">
                             <div class="venda-box-produto-container">
                                 <div class="venda-box-produto-info-header">
@@ -88,10 +88,10 @@
                                         <img src="https://rast.thothcompany.com.br/uploads/images/produto/70a3d520a0a3c72c926f1e6bbc9fa12c.PNG">
                                     </div>
                                     <div class="venda-box-produto-info-header-title">
-                                        {{produto.IDPRODUTO}}
+                                        {{produto.produtoBusca.idProduto}}
                                         <div class="venda-box-produto-info-sub-header">
                                             <div class="venda-box-produto-info-sub-header-title">Fornecedor :</div>
-                                            <div class="venda-box-produto-info-sub-header-label"> {{produto.fantasia}}</div>
+                                            <div class="venda-box-produto-info-sub-header-label"> {{produto.produtoLote.fantasia}}</div>
                                         </div>
                                     </div>
                                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -102,7 +102,7 @@
                                         <mat-icon>edit</mat-icon>
                                         <span>Editar</span>
                                     </button>
-                                    <button mat-menu-item>
+                                    <button mat-menu-item (click)="removerProduto(arrIndex)">
                                         <mat-icon>delete</mat-icon>
                                         <span>Remover</span>
                                     </button>

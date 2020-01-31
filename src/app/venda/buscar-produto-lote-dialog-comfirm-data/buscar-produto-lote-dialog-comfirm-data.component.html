@@ -11,7 +11,6 @@
     </div>
 </div>
 <mat-dialog-content>
-
     <div class="mat-dialog-list-container">
         <div class="mat-dialog-list-container-inside">
             <div class="dialog-title">
@@ -21,7 +20,6 @@
                 </span>
             </div>
             <div class="mat-container-double">
-
                 <div class="mat-container-double-item">
                     <mat-form-field class="input-full-width">
                         <mat-label>Unidade de Medida</mat-label>
@@ -32,36 +30,28 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-
                 <div class="mat-container-double-item">
                     <mat-form-field class="input-full-width">
                         <input matInput [placeholder]="labelQtdItem" value="" type="number" autocomplete="off" [(ngModel)]="quantidadeCaixas">
                     </mat-form-field>
                 </div>
-                
             </div>
             <div class="mat-container-double">
-
                 <div class="mat-container-double-item" *ngIf="unidadeMedidaSelecionada == 2 || unidadeMedidaSelecionada == 3 || unidadeMedidaSelecionada == 4 || unidadeMedidaSelecionada == 5 || unidadeMedidaSelecionada == 6 || unidadeMedidaSelecionada == 7">
                     <mat-form-field class="input-full-width">
                         <input matInput [placeholder]="labelQtdPorCaixa" value="" type="number" autocomplete="off" [(ngModel)]="itensPorCaixa">
                     </mat-form-field>
                 </div>
-
             </div>
             <div class="mat-container-double">
-
                 <div class="mat-container-double-item">
                     <mat-form-field class="input-full-width">
                         <input currencyMask matInput [placeholder]="labelValorUnitario" value="" autocomplete="off" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                     </mat-form-field>
                 </div>
-
             </div>
             <div class="mat-container-double">
-
                 <div class="mat-container-double-item" *ngIf="unidadeMedidaSelecionada == 2 || unidadeMedidaSelecionada == 3 || unidadeMedidaSelecionada == 4 || unidadeMedidaSelecionada == 5 || unidadeMedidaSelecionada == 6 || unidadeMedidaSelecionada == 7">
-                    
                     <div class="box-show-fixed-itens">
                         <div class="box-show-fixed-itens-label">
                             {{labelQtdUnitariaTotal}}
@@ -73,9 +63,7 @@
                             <ng-template #quantidadeVazia>0</ng-template>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="mat-container-double-item" *ngIf="unidadeMedidaSelecionada == 2 || unidadeMedidaSelecionada == 3 || unidadeMedidaSelecionada == 4 || unidadeMedidaSelecionada == 5 || unidadeMedidaSelecionada == 6 || unidadeMedidaSelecionada == 7">
                     <div class="box-show-fixed-itens">
                         <div class="box-show-fixed-itens-label">CUSTO</div>
@@ -87,11 +75,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
             <div class="mat-container-double">
-
                 <div class="mat-container-double-item">
                     <div class="box-show-fixed-itens">
                         <div class="box-show-fixed-itens-label">
@@ -102,7 +87,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mat-container-double-item">
                     <div class="box-show-fixed-itens">
                         <div class="box-show-fixed-itens-label">
@@ -113,13 +97,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </mat-dialog-content>
-
 <mat-dialog-actions>
     <button class="input-full-width" mat-stroked-button color="primary" (click)="salvarProduto()">
         <mat-icon>checked</mat-icon>

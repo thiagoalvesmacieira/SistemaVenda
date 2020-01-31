@@ -37,6 +37,8 @@ export class BuscarProdutoLoteDialogComfirmDataComponent implements OnInit {
   ngOnInit() {
     console.log("DATA : " + JSON.stringify(this.produto));
   }
+
+
   aoAlterarUnidadeMedida(){
     if (this.unidadeMedidaSelecionada == UnidMedida.Caixa){
       this.labelValorUnitario = "R$ CAIXA";
@@ -71,13 +73,8 @@ export class BuscarProdutoLoteDialogComfirmDataComponent implements OnInit {
       this.labelValorUnitario = "R$ BIN";
       this.labelQtdPorCaixa = "BIN POR CAIXA";
       this.labelQtdUnitariaTotal = "QTD.BINS";
-    }
+    } 
   }
-
-
-
-
-
   salvarProdutoNoCarrinho():void{
     console.log("Produto adicionado ao carrinho!");
     this.dialogRef.close(this.produto);

@@ -160,13 +160,14 @@ export class NovaVendaComponent implements OnInit {
       });
     }
   }
-  removerProduto():void{
-    
 
+  removerProduto(index:number):void{
+    // delete this.arrProdutos[index];
 
-
+    console.log("Produto Removido com sucesso : " + JSON.stringify(this.arrProdutos));
 
   }
+
   emitirNotaFiscalDialogComfirm():void{
 
     history.pushState(null, null, location.href);
